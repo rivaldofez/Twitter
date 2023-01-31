@@ -25,12 +25,12 @@ class TweetTableViewCell: UITableViewCell {
     }()
     
     
-    private let displayName: UILabel = {
+    private let displayNameLabel: UILabel = {
        let label = UILabel()
         label.text = "Rivaldo Fernandes"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.textColor = .label
         return label
     }()
     
@@ -38,6 +38,16 @@ class TweetTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondaryLabel
+        label.text = "rivaldofez"
+        return label
+    }()
+    
+    private let tweetTextContentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "This is my mockup tweet, it is going take more than one line, but i will fix this later..."
+        label.numberOfLines = 0
         return label
     }()
     
@@ -46,19 +56,45 @@ class TweetTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(avatarImageView)
+        contentView.addSubview(displayNameLabel)
+        contentView.addSubview(usernameLabel)
+        contentView.addSubview(tweetTextContentLabel)
         
         configureConstraint()
     }
     
     private func configureConstraint(){
-        let avatarImageViewConstraint = [
+        let avatarImageViewConstraints = [
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             avatarImageView.heightAnchor.constraint(equalToConstant: 50),
             avatarImageView.widthAnchor.constraint(equalToConstant: 50),
         ]
         
-        NSLayoutConstraint.activate(avatarImageViewConstraint)
+        let displayNameLabelConstraints = [
+            displayNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+            displayNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
+        ]
+        
+        let usernameLabelConstraints = [
+            usernameLabel.leadingAnchor.constraint(equalTo: displayNameLabel.trailingAnchor, constant: 10),
+            usernameLabel.centerYAnchor.constraint(equalTo: displayNameLabel.centerYAnchor)
+        ]
+        
+        
+        let tweetTextContentLabelConstraints = [
+            tweetTextContentLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            tweetTextContentLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 10),
+            tweetTextContentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            tweetTextContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
+            
+        
+        ]
+        
+        NSLayoutConstraint.activate(avatarImageViewConstraints)
+        NSLayoutConstraint.activate(displayNameLabelConstraints)
+        NSLayoutConstraint.activate(usernameLabelConstraints)
+        NSLayoutConstraint.activate(tweetTextContentLabelConstraints)
     }
     
     required init?(coder: NSCoder) {
