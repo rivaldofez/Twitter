@@ -11,6 +11,8 @@ class TweetTableViewCell: UITableViewCell {
 
     static let identifier = "TweetTableViewCell"
     
+    private let actionSpacing: CGFloat = 60
+    
     
     private let avatarImageView: UIImageView = {
        let imageView = UIImageView()
@@ -51,6 +53,41 @@ class TweetTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let replyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "bubble.left"), for: .normal)
+        button.tintColor = .systemGray
+        
+        return button
+    }()
+    
+    private let retweetButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "arrow.2.squarepath"), for: .normal)
+        button.tintColor = .systemGray
+        
+        return button
+    }()
+    
+    private let likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = .systemGray
+        
+        return button
+    }()
+    
+    private let shareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.tintColor = .systemGray
+        
+        return button
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,6 +96,10 @@ class TweetTableViewCell: UITableViewCell {
         contentView.addSubview(displayNameLabel)
         contentView.addSubview(usernameLabel)
         contentView.addSubview(tweetTextContentLabel)
+        contentView.addSubview(replyButton)
+        contentView.addSubview(retweetButton)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(shareButton)
         
         configureConstraint()
     }
@@ -81,20 +122,42 @@ class TweetTableViewCell: UITableViewCell {
             usernameLabel.centerYAnchor.constraint(equalTo: displayNameLabel.centerYAnchor)
         ]
         
-        
         let tweetTextContentLabelConstraints = [
             tweetTextContentLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
             tweetTextContentLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 10),
-            tweetTextContentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
-            tweetTextContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
-            
+            tweetTextContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+
+        ]
         
+        let replyButtonConstraints = [
+            replyButton.leadingAnchor.constraint(equalTo: tweetTextContentLabel.leadingAnchor),
+            replyButton.topAnchor.constraint(equalTo: tweetTextContentLabel.bottomAnchor, constant: 10),
+            replyButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
+        ]
+        
+        let retweetButtonConstraints = [
+            retweetButton.leadingAnchor.constraint(equalTo: replyButton.trailingAnchor, constant: actionSpacing),
+            retweetButton.centerYAnchor.constraint(equalTo: replyButton.centerYAnchor)
+        ]
+        
+        let likeButtonConstraints = [
+            likeButton.leadingAnchor.constraint(equalTo: retweetButton.trailingAnchor, constant: actionSpacing),
+            likeButton.centerYAnchor.constraint(equalTo: replyButton.centerYAnchor)
+        ]
+        
+        let shareButtonContraints = [
+            shareButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: actionSpacing),
+            shareButton.centerYAnchor.constraint(equalTo: replyButton.centerYAnchor)
         ]
         
         NSLayoutConstraint.activate(avatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameLabelConstraints)
         NSLayoutConstraint.activate(usernameLabelConstraints)
         NSLayoutConstraint.activate(tweetTextContentLabelConstraints)
+        NSLayoutConstraint.activate(replyButtonConstraints)
+        NSLayoutConstraint.activate(retweetButtonConstraints)
+        NSLayoutConstraint.activate(likeButtonConstraints)
+        NSLayoutConstraint.activate(shareButtonContraints)
     }
     
     required init?(coder: NSCoder) {
