@@ -17,6 +17,7 @@
 		7EE33DBC29893FAD00F7A94B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DBB29893FAD00F7A94B /* NotificationViewController.swift */; };
 		7EE33DBE29893FBB00F7A94B /* DirectMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DBD29893FBB00F7A94B /* DirectMessageViewController.swift */; };
 		7EE33DC12989493A00F7A94B /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DC02989493A00F7A94B /* TweetTableViewCell.swift */; };
+		7EE33DC429896BAC00F7A94B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DC329896BAC00F7A94B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7EE33DBB29893FAD00F7A94B /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		7EE33DBD29893FBB00F7A94B /* DirectMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageViewController.swift; sourceTree = "<group>"; };
 		7EE33DC02989493A00F7A94B /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		7EE33DC329896BAC00F7A94B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		7EE33DB529893E6900F7A94B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7EE33DC229896B9200F7A94B /* General */,
 				7EE33DB629893E7400F7A94B /* Core */,
 			);
 			path = Controllers;
@@ -101,6 +104,14 @@
 				7EE33DC02989493A00F7A94B /* TweetTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7EE33DC229896B9200F7A94B /* General */ = {
+			isa = PBXGroup;
+			children = (
+				7EE33DC329896BAC00F7A94B /* ProfileViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +190,7 @@
 				7EE33DA22989392500F7A94B /* AppDelegate.swift in Sources */,
 				7EE33DBE29893FBB00F7A94B /* DirectMessageViewController.swift in Sources */,
 				7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */,
+				7EE33DC429896BAC00F7A94B /* ProfileViewController.swift in Sources */,
 				7EE33DB829893E8F00F7A94B /* HomeViewController.swift in Sources */,
 				7EE33DC12989493A00F7A94B /* TweetTableViewCell.swift in Sources */,
 			);
