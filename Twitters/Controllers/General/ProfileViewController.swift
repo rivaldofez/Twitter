@@ -24,10 +24,11 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(profileTableView)
         
-        let headerView = ProfileHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
+        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
+        profileTableView.tableHeaderView = headerView
         
         configureConstraints()
     }

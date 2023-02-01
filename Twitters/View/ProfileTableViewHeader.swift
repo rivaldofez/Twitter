@@ -7,8 +7,15 @@
 
 import UIKit
 
-class ProfileHeader: UIView {
+class ProfileTableViewHeader: UIView {
 
+    private let profileHeaderImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "ucl")
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

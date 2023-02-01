@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E0D0350298ABF6000434899 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D034F298ABF6000434899 /* ProfileHeader.swift */; };
+		7E0D0350298ABF6000434899 /* ProfileTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D034F298ABF6000434899 /* ProfileTableViewHeader.swift */; };
 		7EE33DA22989392500F7A94B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA12989392500F7A94B /* AppDelegate.swift */; };
 		7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA32989392500F7A94B /* SceneDelegate.swift */; };
 		7EE33DA62989392500F7A94B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA52989392500F7A94B /* MainTabBarController.swift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7E0D034F298ABF6000434899 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		7E0D034F298ABF6000434899 /* ProfileTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewHeader.swift; sourceTree = "<group>"; };
 		7EE33D9E2989392500F7A94B /* Twitters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE33DA12989392500F7A94B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE33DA32989392500F7A94B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				7EE33DC02989493A00F7A94B /* TweetTableViewCell.swift */,
-				7E0D034F298ABF6000434899 /* ProfileHeader.swift */,
+				7E0D034F298ABF6000434899 /* ProfileTableViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 				7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */,
 				7EE33DC429896BAC00F7A94B /* ProfileViewController.swift in Sources */,
 				7EE33DB829893E8F00F7A94B /* HomeViewController.swift in Sources */,
-				7E0D0350298ABF6000434899 /* ProfileHeader.swift in Sources */,
+				7E0D0350298ABF6000434899 /* ProfileTableViewHeader.swift in Sources */,
 				7EE33DC12989493A00F7A94B /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
