@@ -9,11 +9,31 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
     
+    private let joinDateLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Joined January 2023"
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    
+    private let joinDateImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "calendar", withConfiguration: UIImage.SymbolConfiguration(pointSize: 14))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = .secondaryLabel
+        return imageView
+    }()
+    
+    
     private let userBioLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         label.textColor = .label
+        label.text = "iOS Developer"
         return label
     }()
     
@@ -63,6 +83,8 @@ class ProfileTableViewHeader: UIView {
         addSubview(displayNameLabel)
         addSubview(usernameLabel)
         addSubview(userBioLabel)
+        addSubview(joinDateImageView)
+        addSubview(joinDateLabel)
         
         configureConstraints()
     }
@@ -98,11 +120,23 @@ class ProfileTableViewHeader: UIView {
             userBioLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5)
         ]
         
+        let joinDateImageViewConstraints = [
+            joinDateImageView.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            joinDateImageView.topAnchor.constraint(equalTo: userBioLabel.bottomAnchor, constant: 5),
+        ]
+        
+        let joinDateLabelConstraints = [
+            joinDateLabel.leadingAnchor.constraint(equalTo: joinDateImageView.trailingAnchor, constant: 2),
+            joinDateLabel.bottomAnchor.constraint(equalTo: joinDateImageView.bottomAnchor)
+        ]
+        
         NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
         NSLayoutConstraint.activate(profileAvatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameConstraints)
         NSLayoutConstraint.activate(usernameLabelConstraints)
         NSLayoutConstraint.activate(userBioLabelConstraints)
+        NSLayoutConstraint.activate(joinDateImageViewConstraints)
+        NSLayoutConstraint.activate(joinDateLabelConstraints)
     }
     
     required init?(coder: NSCoder) {
