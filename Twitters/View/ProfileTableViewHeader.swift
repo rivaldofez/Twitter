@@ -9,6 +9,14 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
     
+    private let userBioLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        label.textColor = .label
+        return label
+    }()
+    
     private let usernameLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +62,7 @@ class ProfileTableViewHeader: UIView {
         addSubview(profileAvatarImageView)
         addSubview(displayNameLabel)
         addSubview(usernameLabel)
+        addSubview(userBioLabel)
         
         configureConstraints()
     }
@@ -83,10 +92,17 @@ class ProfileTableViewHeader: UIView {
             usernameLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 5)
         ]
         
+        let userBioLabelConstraints = [
+            userBioLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            userBioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            userBioLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5)
+        ]
+        
         NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
         NSLayoutConstraint.activate(profileAvatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameConstraints)
         NSLayoutConstraint.activate(usernameLabelConstraints)
+        NSLayoutConstraint.activate(userBioLabelConstraints)
     }
     
     required init?(coder: NSCoder) {
