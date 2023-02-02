@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class LoginViewController: UIViewController {
 
@@ -62,9 +63,13 @@ class LoginViewController: UIViewController {
         view.addSubview(loginTitleLabel)
         view.addSubview(passwordTextField)
         view.addSubview(emailTextField)
-        
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         configureConstraints()
         bindViews()
+    }
+    
+    @objc private func didTapLogin(){
+        viewModel.loginUser()
     }
     
     private func bindViews() {
