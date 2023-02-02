@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class RegisterViewController: UIViewController {
     
     private var viewModel = RegisterViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     private let registerTitleLabel: UILabel = {
        let label = UILabel()
@@ -65,6 +67,10 @@ class RegisterViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
         
         passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
+        
+        viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
+            self?.registerButton.isEnabled = validationState
+        }.store(in: &subscriptions)
     }
 
     override func viewDidLoad() {
@@ -77,7 +83,14 @@ class RegisterViewController: UIViewController {
         view.addSubview(registerButton)
         
         configureConstraints()
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
+        
         bindViews()
+    }
+    
+    @objc private func didTapToDismiss(){
+        view.endEditing(true)
     }
     
     private func configureConstraints(){
