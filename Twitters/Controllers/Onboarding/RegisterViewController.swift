@@ -71,6 +71,11 @@ class RegisterViewController: UIViewController {
         viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
             self?.registerButton.isEnabled = validationState
         }.store(in: &subscriptions)
+        
+        viewModel.$user.sink { [weak self] user in
+            print(user)
+        }
+        .store(in: &subscriptions)
     }
 
     override func viewDidLoad() {
@@ -84,9 +89,15 @@ class RegisterViewController: UIViewController {
         
         configureConstraints()
         
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         
         bindViews()
+    }
+    
+    @objc private func didTapRegister(){
+        viewModel.createUser()
     }
     
     @objc private func didTapToDismiss(){
