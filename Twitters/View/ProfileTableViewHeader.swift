@@ -29,17 +29,33 @@ class ProfileTableViewHeader: UIView {
         }
     }
     
+    private var leadingAnchors: [NSLayoutConstraint] = []
+    private var trailingAnchors: [NSLayoutConstraint] = []
+    
     private var selectedTab: Int = 0 {
         didSet {
             for i in 0 ..< tabs.count {
                 UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) { [weak self] in
                     self?.sectionStackView.arrangedSubviews[i].tintColor = i == self?.selectedTab ? .label : .secondaryLabel
+                    
+                    self?.leadingAnchors[i].isActive = i == self?.selectedTab ? true : false
+                    self?.trailingAnchors[i].isActive = i == self?.selectedTab ? true : false
+                    
+                    self?.layoutIfNeeded()
                 }
             }
             
             print(selectedTab)
         }
     }
+    
+    private let indicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red: 29/256, green: 161/255, blue: 242/255, alpha: 1)
+        
+        return view
+    }()
     
     private var tabs: [UIButton] = ["Tweets", "Tweets & Replies", "Media", "Likes"].map { buttonTitle in
         let button = UIButton(type: .system)
@@ -177,12 +193,22 @@ class ProfileTableViewHeader: UIView {
         addSubview(followersAccountLabel)
         addSubview(followersTextLabel)
         addSubview(sectionStackView)
+        addSubview(indicator)
         
         configureConstraints()
         configureStackButton()
     }
     
     private func configureConstraints(){
+        
+        for i in 0 ..< tabs.count {
+            let leadingAnchor = indicator.leadingAnchor.constraint(equalTo: sectionStackView.arrangedSubviews[i].leadingAnchor)
+            leadingAnchors.append(leadingAnchor)
+            
+            let trailingAnchor = indicator.trailingAnchor.constraint(equalTo: sectionStackView.arrangedSubviews[i].trailingAnchor)
+            trailingAnchors.append(trailingAnchor)
+        }
+        
         let profileHeaderImageViewConstraints = [
             profileHeaderImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             profileHeaderImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -251,6 +277,13 @@ class ProfileTableViewHeader: UIView {
             sectionStackView.heightAnchor.constraint(equalToConstant: 35)
         ]
         
+        let indicatorConstraints = [
+            leadingAnchors[0],
+            trailingAnchors[0],
+            indicator.topAnchor.constraint(equalTo: sectionStackView.arrangedSubviews[0].bottomAnchor),
+            indicator.heightAnchor.constraint(equalToConstant: 4)
+        ]
+        
         NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
         NSLayoutConstraint.activate(profileAvatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameConstraints)
@@ -263,6 +296,7 @@ class ProfileTableViewHeader: UIView {
         NSLayoutConstraint.activate(followersAccountLabelConstraints)
         NSLayoutConstraint.activate(followersTextLabelConstraints)
         NSLayoutConstraint.activate(sectionStackViewConstraints)
+        NSLayoutConstraint.activate(indicatorConstraints)
 
     }
     
@@ -296,11 +330,10 @@ class ProfileTableViewHeader: UIView {
         }
     }
     
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
 
 }
