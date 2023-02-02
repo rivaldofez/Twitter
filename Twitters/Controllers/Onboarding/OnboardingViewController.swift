@@ -10,11 +10,11 @@ import UIKit
 class OnboardingViewController: UIViewController {
     
     private let loginButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Login", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
-        button.setTitleColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1), for: .normal) 
+        button.tintColor = (UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1))
         return button
 
     }()
@@ -40,19 +40,17 @@ class OnboardingViewController: UIViewController {
     }()
     
     private let createAccountButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Create Account", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
-        button.layer.masksToBounds = false
-        button.tintColor = .red
+        button.layer.masksToBounds = true
+        button.tintColor = .white
         button.layer.cornerRadius = 30
         return button
     }()
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,8 +60,15 @@ class OnboardingViewController: UIViewController {
         view.addSubview(promptLabel)
         view.addSubview(loginButton)
         
+        createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
         
         configureConstraints()
+    }
+    
+    @objc private func didTapCreateAccount(){
+        let vc =  RegisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     private func configureConstraints(){
