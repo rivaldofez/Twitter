@@ -20,6 +20,7 @@
 		7E0D0365298BC33800434899 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7E0D0364298BC33800434899 /* FirebaseStorageCombine-Community */; };
 		7E0D0368298BC67E00434899 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D0367298BC67E00434899 /* OnboardingViewController.swift */; };
 		7E0D036A298BCF7700434899 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D0369298BCF7700434899 /* RegisterViewController.swift */; };
+		7E0D036D298BD5E300434899 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D036C298BD5E300434899 /* RegisterViewModel.swift */; };
 		7EE33DA22989392500F7A94B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA12989392500F7A94B /* AppDelegate.swift */; };
 		7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA32989392500F7A94B /* SceneDelegate.swift */; };
 		7EE33DA62989392500F7A94B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA52989392500F7A94B /* MainTabBarController.swift */; };
@@ -38,6 +39,7 @@
 		7E0D0351298BC1ED00434899 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7E0D0367298BC67E00434899 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7E0D0369298BCF7700434899 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7E0D036C298BD5E300434899 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		7EE33D9E2989392500F7A94B /* Twitters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE33DA12989392500F7A94B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE33DA32989392500F7A94B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		7E0D036B298BD5C100434899 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7E0D036C298BD5E300434899 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7EE33D952989392500F7A94B = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		7EE33DA02989392500F7A94B /* Twitters */ = {
 			isa = PBXGroup;
 			children = (
+				7E0D036B298BD5C100434899 /* ViewModel */,
 				7EE33DBF2989492000F7A94B /* View */,
 				7EE33DB529893E6900F7A94B /* Controllers */,
 				7EE33DA12989392500F7A94B /* AppDelegate.swift */,
@@ -245,6 +256,7 @@
 				7EE33DBE29893FBB00F7A94B /* DirectMessageViewController.swift in Sources */,
 				7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */,
 				7EE33DC429896BAC00F7A94B /* ProfileViewController.swift in Sources */,
+				7E0D036D298BD5E300434899 /* RegisterViewModel.swift in Sources */,
 				7EE33DB829893E8F00F7A94B /* HomeViewController.swift in Sources */,
 				7E0D0350298ABF6000434899 /* ProfileTableViewHeader.swift in Sources */,
 				7E0D0368298BC67E00434899 /* OnboardingViewController.swift in Sources */,
