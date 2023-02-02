@@ -10,7 +10,7 @@ import Combine
 
 class RegisterViewController: UIViewController {
     
-    private var viewModel = RegisterViewModel()
+    private var viewModel = AuthenticationViewModel()
     private var subscriptions: Set<AnyCancellable> = []
     
     private let registerTitleLabel: UILabel = {
@@ -55,12 +55,12 @@ class RegisterViewController: UIViewController {
     
     @objc private func didChangeEmailField(){
         viewModel.email = emailTextField.text
-        viewModel.validateRegistrationForm()
+        viewModel.validateAuthenticationForm()
     }
     
     @objc private func didChangePasswordField(){
         viewModel.password = passwordTextField.text
-        viewModel.validateRegistrationForm()
+        viewModel.validateAuthenticationForm()
     }
     
     private func bindViews() {
@@ -68,7 +68,7 @@ class RegisterViewController: UIViewController {
         
         passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
         
-        viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
+        viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
             self?.registerButton.isEnabled = validationState
         }.store(in: &subscriptions)
         

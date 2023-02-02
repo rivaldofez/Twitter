@@ -61,8 +61,6 @@ class LoginViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(emailTextField)
         
-        
-        
         configureConstraints()
     }
     
@@ -100,7 +98,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(loginButtonConstraints)
         NSLayoutConstraint.activate(emailTextfieldConstraints)
         NSLayoutConstraint.activate(passwordTextfieldConstraints)
-        NSLayoutConstraint.activate(loginButtonConstraints)
+        NSLayoutConstraint.activate(loginTitleLabelConstraints)
     }
 
 }
