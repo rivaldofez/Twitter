@@ -88,7 +88,20 @@ class LoginViewController: UIViewController {
             vc.dismiss(animated: true)
         }
         .store(in: &subscriptions)
+        
+        viewModel.$error.sink { [weak self] errorString in
+            guard let error = errorString else { return }
+            self?.presentAlert(with: error)
+        }.store(in: &subscriptions)
     }
+    
+    private func presentAlert(with error: String){
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okButton)
+        present(alert, animated: true)
+    }
+
     
     @objc private func didChangeEmailField(){
         viewModel.email = emailTextField.text
