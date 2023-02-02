@@ -9,6 +9,42 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
     
+    private let followersTextLabel: UILabel = {
+        let label = UILabel()
+         label.translatesAutoresizingMaskIntoConstraints = false
+         label.text = "Followers"
+         label.textColor = .secondaryLabel
+         label.font = .systemFont(ofSize: 14, weight: .regular)
+         return label
+    }()
+    
+    private let followersAccountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "100"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        return label
+    }()
+    
+    private let followingTextLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Following"
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    private let followingAccountLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "214"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        return label
+    }()
+    
     private let joinDateLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +121,11 @@ class ProfileTableViewHeader: UIView {
         addSubview(userBioLabel)
         addSubview(joinDateImageView)
         addSubview(joinDateLabel)
+        addSubview(followingAccountLabel)
+        addSubview(followingTextLabel)
+        addSubview(followersAccountLabel)
+        addSubview(followersTextLabel)
+
         
         configureConstraints()
     }
@@ -130,6 +171,29 @@ class ProfileTableViewHeader: UIView {
             joinDateLabel.bottomAnchor.constraint(equalTo: joinDateImageView.bottomAnchor)
         ]
         
+        let followingAccountLabelConstraints = [
+            followingAccountLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            followingAccountLabel.topAnchor.constraint(equalTo: joinDateLabel.bottomAnchor, constant: 10),
+        ]
+        
+        let followingTextLabelConstraints = [
+            followingTextLabel.leadingAnchor.constraint(equalTo: followingAccountLabel.trailingAnchor, constant: 4),
+            followingTextLabel.bottomAnchor.constraint(equalTo: followingAccountLabel.bottomAnchor)
+        ]
+        
+        let followersAccountLabelConstraints = [
+            followersAccountLabel.leadingAnchor.constraint(equalTo: followingTextLabel.trailingAnchor, constant: 8),
+            followersAccountLabel.bottomAnchor.constraint(equalTo: followingAccountLabel.bottomAnchor)
+        ]
+        
+        let followersTextLabelConstraints = [
+            followersTextLabel.leadingAnchor.constraint(equalTo: followersAccountLabel.trailingAnchor, constant: 4),
+            followersTextLabel.bottomAnchor.constraint(equalTo: followingAccountLabel.bottomAnchor)
+        
+        ]
+        
+
+        
         NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
         NSLayoutConstraint.activate(profileAvatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameConstraints)
@@ -137,6 +201,11 @@ class ProfileTableViewHeader: UIView {
         NSLayoutConstraint.activate(userBioLabelConstraints)
         NSLayoutConstraint.activate(joinDateImageViewConstraints)
         NSLayoutConstraint.activate(joinDateLabelConstraints)
+        NSLayoutConstraint.activate(followingAccountLabelConstraints)
+        NSLayoutConstraint.activate(followingTextLabelConstraints)
+        NSLayoutConstraint.activate(followersAccountLabelConstraints)
+        NSLayoutConstraint.activate(followersTextLabelConstraints)
+
     }
     
     required init?(coder: NSCoder) {
