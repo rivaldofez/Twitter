@@ -31,6 +31,12 @@ class ProfileTableViewHeader: UIView {
     
     private var selectedTab: Int = 0 {
         didSet {
+            for i in 0 ..< tabs.count {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) { [weak self] in
+                    self?.sectionStackView.arrangedSubviews[i].tintColor = i == self?.selectedTab ? .label : .secondaryLabel
+                }
+            }
+            
             print(selectedTab)
         }
     }
@@ -261,8 +267,15 @@ class ProfileTableViewHeader: UIView {
     }
     
     private func configureStackButton(){
-        for (_, button) in sectionStackView.arrangedSubviews.enumerated(){
+        for (i, button) in sectionStackView.arrangedSubviews.enumerated(){
             guard let button = button as? UIButton else { return }
+            
+            if i == selectedTab {
+                button.tintColor = .label
+            } else {
+                button.tintColor = .secondaryLabel
+            }
+            
             button.addTarget(self, action: #selector(didTapTab(_:)), for: .touchUpInside)
         }
     }
@@ -277,7 +290,7 @@ class ProfileTableViewHeader: UIView {
         case SectionTabs.media.rawValue:
             selectedTab = 2
         case SectionTabs.likes.rawValue:
-            selectedTab = 4
+            selectedTab = 3
         default:
             selectedTab = 0
         }
