@@ -123,6 +123,9 @@ class ProfileDataFormViewController: UIViewController {
         avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
         
         bindViews()
+        
+        
+        submitButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
     }
     
     private func bindViews(){
@@ -132,6 +135,11 @@ class ProfileDataFormViewController: UIViewController {
             self?.submitButton.isEnabled = buttonState
         }
         .store(in: &subscriptions)
+    }
+    
+    
+    @objc private func didTapSubmit(){
+        viewModel.uploadAvatar()
     }
     
     @objc private func didUpdateDisplayName(){

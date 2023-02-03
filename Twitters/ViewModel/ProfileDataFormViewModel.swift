@@ -20,7 +20,9 @@ final class ProfileDataFormViewModel: ObservableObject {
     @Published var imageData: UIImage?
     @Published var isFormValid: Bool = false
     @Published var error: String?
+    @Published var url: URL?
     
+    private var subscriptions: Set<AnyCancellable> = []
     
     func validateUserProfileForm(){
         guard let displayName = displayName,
@@ -43,13 +45,18 @@ final class ProfileDataFormViewModel: ObservableObject {
         metaData.contentType = "image/jpeg"
         
         StorageManager.shared.uploadProfilePhoto(with: randomID, image: imageData, metaData: metaData)
+            .flatMap({ metaData in
+                StorageManager.shared.getDownloadURL(for: metaData.path)
+            })
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.error = error.localizedDescription
                 }
-            } receiveValue: { metaData in
-                metaData.path
+            } receiveValue: { [weak self] url in
+                self?.url = url
             }
+            .store(in: &subscriptions)
+
 
     }
     

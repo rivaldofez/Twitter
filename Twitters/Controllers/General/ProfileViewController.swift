@@ -44,6 +44,7 @@ class ProfileViewController: UIViewController {
         profileTableView.contentInsetAdjustmentBehavior = .never
         
         configureConstraints()
+
     }
     
     private func configureConstraints(){
