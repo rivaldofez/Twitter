@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SDWebImage
 
 class ProfileViewController: UIViewController {
     
@@ -58,6 +59,7 @@ class ProfileViewController: UIViewController {
             self?.headerView.followersAccountLabel.text = "\(user.followersCount)"
             self?.headerView.followingAccountLabel.text = "\(user.followingCount)"
             self?.headerView.userBioLabel.text = user.bio
+            self?.headerView.profileAvatarImageView.sd_setImage(with: URL(string: user.avatarPath))
         }
         .store(in: &subscriptions)
     }

@@ -153,13 +153,12 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let profileAvatarImageView: UIImageView = {
+    var profileAvatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 40
-        imageView.image = UIImage(systemName: "person")
-        imageView.backgroundColor = .yellow
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
