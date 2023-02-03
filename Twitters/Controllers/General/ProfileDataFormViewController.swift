@@ -7,8 +7,12 @@
 
 import UIKit
 import PhotosUI
+import Combine
 
 class ProfileDataFormViewController: UIViewController {
+    
+    private var viewModel = ProfileDataFormViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     
     private let displayNameTextField: UITextField = {
@@ -117,6 +121,27 @@ class ProfileDataFormViewController: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         
         avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+        
+        bindViews()
+    }
+    
+    private func bindViews(){
+        displayNameTextField.addTarget(self, action: #selector(didUpdateDisplayName), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(didUpdateUsername), for: .editingChanged)
+        viewModel.$isFormValid.sink { [weak self] buttonState in
+            self?.submitButton.isEnabled = buttonState
+        }
+        .store(in: &subscriptions)
+    }
+    
+    @objc private func didUpdateDisplayName(){
+        viewModel.displayName = displayNameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
+    @objc private func didUpdateUsername(){
+        viewModel.username = usernameTextField.text
+        viewModel.validateUserProfileForm()
     }
     
     @objc func didTapToUpload(){
@@ -207,6 +232,11 @@ extension ProfileDataFormViewController: UITextViewDelegate {
         }
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.bio = textView.text
+        viewModel.validateUserProfileForm()
+    }
 }
 
 extension ProfileDataFormViewController: UITextFieldDelegate{
@@ -228,6 +258,8 @@ extension ProfileDataFormViewController: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self?.avatarPlaceholderImageView.image = image
+                        self?.viewModel.imageData = image
+                        self?.viewModel.validateUserProfileForm()
                     }
                 }
             }
