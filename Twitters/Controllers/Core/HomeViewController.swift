@@ -10,6 +10,8 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController {
     
+    private var viewModel: HomeViewModel()
+    
     private func configureNavigationBar(){
         let size: CGFloat = 36
         let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
@@ -46,6 +48,9 @@ class HomeViewController: UIViewController {
         configureNavigationBar()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSignOut))
+        
+        
+        bindViews()
 
     }
     
@@ -70,7 +75,21 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
         handleAuthentication()
+        viewModel.retrieveUser()
+    }
+    
+    func completeUserOnBoarding() {
         
+    }
+    
+    func bindViews(){
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+            
+            if !user.isUserOnboarded{
+                self?.completeUserOnBoarding()
+            }
+        }
     }
     
 }
