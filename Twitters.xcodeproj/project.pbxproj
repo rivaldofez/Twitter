@@ -31,6 +31,7 @@
 		7E2C9EA6298D2D1500B86A90 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C9EA5298D2D1500B86A90 /* StorageManager.swift */; };
 		7E2C9EA8298D452D00B86A90 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C9EA7298D452D00B86A90 /* ProfileViewModel.swift */; };
 		7E2C9EAB298D5B8300B86A90 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2C9EAA298D5B8300B86A90 /* SDWebImage */; };
+		7E2C9EAF298D658B00B86A90 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C9EAE298D658B00B86A90 /* Extension+UIColor.swift */; };
 		7EE33DA22989392500F7A94B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA12989392500F7A94B /* AppDelegate.swift */; };
 		7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA32989392500F7A94B /* SceneDelegate.swift */; };
 		7EE33DA62989392500F7A94B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE33DA52989392500F7A94B /* MainTabBarController.swift */; };
@@ -59,6 +60,7 @@
 		7E2C9EA3298CC62C00B86A90 /* ProfileDataFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewModel.swift; sourceTree = "<group>"; };
 		7E2C9EA5298D2D1500B86A90 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		7E2C9EA7298D452D00B86A90 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7E2C9EAE298D658B00B86A90 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		7EE33D9E2989392500F7A94B /* Twitters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE33DA12989392500F7A94B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE33DA32989392500F7A94B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7E2C9EAC298D656B00B86A90 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E2C9EAD298D657600B86A90 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E2C9EAD298D657600B86A90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7E2C9EAE298D658B00B86A90 /* Extension+UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7EE33D952989392500F7A94B = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +171,7 @@
 		7EE33DA02989392500F7A94B /* Twitters */ = {
 			isa = PBXGroup;
 			children = (
+				7E2C9EAC298D656B00B86A90 /* Utils */,
 				7E2C9E9A298CB7BB00B86A90 /* Model */,
 				7E0D036E298BDF7400434899 /* Networking */,
 				7E0D036B298BD5C100434899 /* ViewModel */,
@@ -309,6 +328,7 @@
 				7EE33DBE29893FBB00F7A94B /* DirectMessageViewController.swift in Sources */,
 				7EE33DA42989392500F7A94B /* SceneDelegate.swift in Sources */,
 				7EE33DC429896BAC00F7A94B /* ProfileViewController.swift in Sources */,
+				7E2C9EAF298D658B00B86A90 /* Extension+UIColor.swift in Sources */,
 				7E0D036D298BD5E300434899 /* AuthenticationViewModel.swift in Sources */,
 				7EE33DB829893E8F00F7A94B /* HomeViewController.swift in Sources */,
 				7E2C9EA2298CC45300B86A90 /* ProfileDataFormViewController.swift in Sources */,

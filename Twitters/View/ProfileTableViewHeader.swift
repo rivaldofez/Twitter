@@ -52,7 +52,7 @@ class ProfileTableViewHeader: UIView {
     private let indicator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 29/256, green: 161/255, blue: 242/255, alpha: 1)
+        view.backgroundColor = .twitterBlueColor
         
         return view
     }()
