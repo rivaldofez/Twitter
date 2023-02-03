@@ -55,7 +55,7 @@ class ProfileDataFormViewController: UIViewController {
     }()
     
     private let avatarPlaceholderImageView : UIImageView = {
-       let imageview = UIImageView()
+        let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
         imageview.clipsToBounds = true
         imageview.layer.masksToBounds = true
@@ -83,7 +83,7 @@ class ProfileDataFormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(hintLabel)
@@ -91,8 +91,9 @@ class ProfileDataFormViewController: UIViewController {
         scrollView.addSubview(displayNameTextField)
         scrollView.addSubview(usernameTextField)
         scrollView.addSubview(bioTextView)
-
+        
         configureConstraints()
+        bioTextView.delegate = self
         
         isModalInPresentation = true
     }
@@ -136,7 +137,7 @@ class ProfileDataFormViewController: UIViewController {
             bioTextView.trailingAnchor.constraint(equalTo: displayNameTextField.trailingAnchor),
             bioTextView.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: 20),
             bioTextView.heightAnchor.constraint(equalToConstant: 150)
-        
+            
         ]
         
         NSLayoutConstraint.activate(scrollViewConstraints)
@@ -145,5 +146,21 @@ class ProfileDataFormViewController: UIViewController {
         NSLayoutConstraint.activate(displayNameTextfieldConstraints)
         NSLayoutConstraint.activate(usernameTextfieldConstraints)
         NSLayoutConstraint.activate(bioTextViewConstraints)
+    }
+}
+
+extension ProfileDataFormViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .gray {
+            textView.textColor = .label
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Tell the world about yourself"
+            textView.textColor = .gray
+        }
     }
 }
