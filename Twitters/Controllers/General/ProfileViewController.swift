@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class ProfileViewController: UIViewController {
     
     private var isStatusBarHidden: Bool = true
+    private var viewModel = ProfileViewModel()
+    private var subscriptions : Set<AnyCancellable> = []
     
     private let statusBar: UIView = {
        let view = UIView()
@@ -18,6 +21,8 @@ class ProfileViewController: UIViewController {
         view.layer.opacity = 0
         return view
     }()
+    
+    private lazy var headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
     
     private let profileTableView: UITableView = {
         let tableView = UITableView()
@@ -35,16 +40,33 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileTableView)
         view.addSubview(statusBar)
         
-        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
-        
         profileTableView.delegate = self
         profileTableView.dataSource = self
         profileTableView.tableHeaderView = headerView
         navigationController?.navigationBar.isHidden = true
         profileTableView.contentInsetAdjustmentBehavior = .never
-        
+        bindViews()
         configureConstraints()
 
+    }
+    
+    private func bindViews(){
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+            self?.headerView.displayNameLabel.text = user.displayName
+            self?.headerView.usernameLabel.text = "@\(user.username)"
+            self?.headerView.followersAccountLabel.text = "\(user.followersCount)"
+            self?.headerView.followingAccountLabel.text = "\(user.followingCount)"
+            self?.headerView.userBioLabel.text = user.bio
+        }
+        .store(in: &subscriptions)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewModel.retrieveUser()
+        }
     }
     
     private func configureConstraints(){

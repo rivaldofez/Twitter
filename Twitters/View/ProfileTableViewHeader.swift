@@ -85,10 +85,9 @@ class ProfileTableViewHeader: UIView {
          return label
     }()
     
-    private let followersAccountLabel: UILabel = {
+    var followersAccountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "100"
         label.textColor = .label
         label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
@@ -103,16 +102,15 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let followingAccountLabel: UILabel = {
+    var followingAccountLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "214"
         label.textColor = .label
         label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
     
-    private let joinDateLabel: UILabel = {
+    var joinDateLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Joined January 2023"
@@ -131,28 +129,25 @@ class ProfileTableViewHeader: UIView {
     }()
     
     
-    private let userBioLabel: UILabel = {
+    var userBioLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         label.textColor = .label
-        label.text = "iOS Developer"
         return label
     }()
     
-    private let usernameLabel: UILabel = {
+    var usernameLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "@rivaldofez"
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .regular)
         return label
     }()
 
-    private let displayNameLabel: UILabel = {
+    var displayNameLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Rivaldo Fernandes"
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.textColor = .label
         return label
