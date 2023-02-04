@@ -19,7 +19,11 @@ final class HomeViewModel: ObservableObject {
     
     func retrieveUser(){
         guard let id = Auth.auth().currentUser?.uid else { return }
-        DatabaseManager.shared.collectionUsers(retrieve: id).sink { [weak self] completion in
+        DatabaseManager.shared.collectionUsers(retrieve: id)
+            .handleEvents(receiveOutput: { _ in
+                self?.fetchTweets()
+            })
+            .sink { [weak self] completion in
             if case .failure(let error) = completion {
                 self?.error = error.localizedDescription
             }
