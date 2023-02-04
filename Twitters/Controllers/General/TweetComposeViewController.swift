@@ -9,6 +9,8 @@ import UIKit
 
 class TweetComposeViewController: UIViewController {
     
+    private var viewModel = TweetComposerViewModel()
+    
     private let tweetButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +20,7 @@ class TweetComposeViewController: UIViewController {
         button.tintColor = .white
         button.clipsToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
-        
+        button.isEnabled = false
         return button
     }()
     
@@ -33,6 +35,11 @@ class TweetComposeViewController: UIViewController {
         textview.font = .systemFont(ofSize: 16)
         return textview
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getUserData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +53,14 @@ class TweetComposeViewController: UIViewController {
         tweetContentTextView.delegate = self
         
         configureConstraints()
+        bindViews()
+    }
+    
+    
+    private func bindViews(){
+        viewModel.$isValidToTweet.sink { [weak self] state in
+            self?.tweetButton.isEnabled = state
+        }
     }
     
     private func configureConstraints(){
@@ -88,5 +103,10 @@ extension TweetComposeViewController: UITextViewDelegate {
             textView.text = "What's happening?"
             textView.textColor = .gray
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.tweetContent = textView.text
+        viewModel.validateToTweet()
     }
 }
