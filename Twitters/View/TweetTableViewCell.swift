@@ -30,7 +30,6 @@ class TweetTableViewCell: UITableViewCell {
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "person")
         imageView.backgroundColor = .darkGray
         return imageView
     }()
@@ -38,7 +37,6 @@ class TweetTableViewCell: UITableViewCell {
     
     private let displayNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Rivaldo Fernandes"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
@@ -50,14 +48,12 @@ class TweetTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
-        label.text = "@rivaldofez"
         return label
     }()
     
     private let tweetTextContentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "This is my mockup tweet, it is going take more than one line, but i will fix this later..."
         label.numberOfLines = 0
         return label
     }()
@@ -128,6 +124,13 @@ class TweetTableViewCell: UITableViewCell {
     
     @objc private func didTapShare(){
         delegate?.tweetTableViewCellDidTapShare()
+    }
+    
+    func configureTweet(displayName: String, username: String, tweetContent: String, avatarPath: String){
+        displayNameLabel.text = displayName
+        usernameLabel.text = "@\(username)"
+        tweetTextContentLabel.text = tweetContent
+        avatarImageView.sd_setImage(with: URL(string: avatarPath))
     }
     
     private func configureButtons(){
