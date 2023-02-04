@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class TweetComposeViewController: UIViewController {
     
     private var viewModel = TweetComposerViewModel()
+    private var subscriptions : Set<AnyCancellable> = []
     
     private let tweetButton: UIButton = {
         let button = UIButton(type: .system)
@@ -61,6 +63,7 @@ class TweetComposeViewController: UIViewController {
         viewModel.$isValidToTweet.sink { [weak self] state in
             self?.tweetButton.isEnabled = state
         }
+        .store(in: &subscriptions)
     }
     
     private func configureConstraints(){
