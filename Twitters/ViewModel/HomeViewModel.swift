@@ -20,7 +20,8 @@ final class HomeViewModel: ObservableObject {
     func retrieveUser(){
         guard let id = Auth.auth().currentUser?.uid else { return }
         DatabaseManager.shared.collectionUsers(retrieve: id)
-            .handleEvents(receiveOutput: { _ in
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.user = user
                 self?.fetchTweets()
             })
             .sink { [weak self] completion in

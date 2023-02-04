@@ -130,13 +130,21 @@ class HomeViewController: UIViewController {
                 self?.completeUserOnBoarding()
             }
         }.store(in: &subscriptions)
+        
+        viewModel.$tweets.sink { [weak self] tweets in
+            
+            DispatchQueue.main.async {
+                self?.timelineTableView.reloadData()
+            }
+        }.store(in: &subscriptions)
+
     }
     
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -164,6 +172,5 @@ extension HomeViewController: TweetTableViewCellDelegate {
     func tweetTableViewCellDidTapShare() {
         print("share")
     }
-    
-    
+
 }
