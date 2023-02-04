@@ -56,6 +56,12 @@ class TweetComposeViewController: UIViewController {
         
         configureConstraints()
         bindViews()
+        
+        tweetButton.addTarget(self, action: #selector(didTapToTweet), for: .touchUpInside)
+    }
+    
+    @objc private func didTapToTweet(){
+        viewModel.dispatchTweet()
     }
     
     
@@ -64,6 +70,13 @@ class TweetComposeViewController: UIViewController {
             self?.tweetButton.isEnabled = state
         }
         .store(in: &subscriptions)
+        
+        viewModel.$shouldDismissComposer.sink { [weak self] success in
+            if success {
+                self?.dismiss(animated: true)
+            }
+        }.store(in: &subscriptions)
+
     }
     
     private func configureConstraints(){

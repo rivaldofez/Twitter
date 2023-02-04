@@ -9,11 +9,12 @@ import Foundation
 
 
 struct Tweet: Codable {
-    let id: String
+    var id = UUID().uuidString
     let author: TwitterUser
     let tweetContent: String
     var likesCount: Int
     var likers: [String]
     let isReply: Bool
+    var parentReference: String?
     
 }
